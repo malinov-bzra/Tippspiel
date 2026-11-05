@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_02_152548) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_03_180906) do
   create_table "matches", force: :cascade do |t|
     t.string "home_team"
     t.string "away_team"
@@ -20,4 +20,24 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_02_152548) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "predictions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "match_id", null: false
+    t.integer "home_score"
+    t.integer "away_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_predictions_on_match_id"
+    t.index ["user_id"], name: "index_predictions_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "predictions", "matches"
+  add_foreign_key "predictions", "users"
 end
