@@ -11,7 +11,7 @@ A football prediction game. Players predict match results, earn points based on 
 | Correct outcome (win, draw, loss) | 1 |
 | Otherwise | 0 |
 
-Predictions are locked at kickoff, and each player can predict a match only once.
+Each player can predict a match only once.
 
 ## Tech Stack
 
@@ -55,6 +55,7 @@ Uniqueness of one prediction per user and match is enforced both by a model vali
 cd backend
 bundle install
 rails db:setup
+rails db:seed
 rails server
 ```
 
@@ -69,6 +70,13 @@ npm run dev
 ```
 
 The app runs at http://localhost:5173.
+
+## API Endpoints
+
+| Method | Path | Description |
+|---|---|---|
+| GET | `/api/matches` | All matches, ordered by kickoff |
+| GET | `/api/leaderboard` | Players ranked by total points |
 
 ## Tests
 
